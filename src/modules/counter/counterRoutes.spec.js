@@ -1,10 +1,10 @@
-import CounterRoute from './'
+import CounterRoutes from './counterRoutes'
 
 describe('(Route) Counter', () => {
   let _route
 
   beforeEach(() => {
-    _route = CounterRoute({})
+    _route = CounterRoutes({})
   })
 
   it('Should return a route configuration object', () => {
