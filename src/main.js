@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 import { Router, useRouterHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
-import createStore from './store/createStore'
+import createStore from './app/createStore'
 import { Provider } from 'react-redux'
 
 const MOUNT_ELEMENT = document.getElementById('root')
@@ -23,7 +23,7 @@ const history = syncHistoryWithStore(browserHistory, store, {
 })
 
 let render = (key = null) => {
-  const routes = require('./routes/index').default(store)
+  const routes = require('./app/routes').default(store)
   const App = (
     <Provider store={store}>
       <div style={{ height: '100%' }}>
@@ -50,7 +50,7 @@ if (__DEV__ && module.hot) {
       renderError(error)
     }
   }
-  module.hot.accept(['./routes/index'], () => render())
+  module.hot.accept(['./app/routes'], () => render())
 }
 
 // Use Redux DevTools chrome extension
