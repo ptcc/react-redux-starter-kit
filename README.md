@@ -6,6 +6,10 @@
 [![devDependency Status](https://david-dm.org/davezuko/react-redux-starter-kit/dev-status.svg)](https://david-dm.org/davezuko/react-redux-starter-kit#info=devDependencies)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
+This repository is based on https://github.com/davezuko/react-redux-starter-kit. The difference is its structure is modular which is inspired by the post http://marmelab.com/blog/2015/12/17/react-directory-structure.html of François Zaninotto.
+
+===
+
 This starter kit is designed to get you up and running with a bunch of awesome new front-end technologies, all on top of a configurable, feature-rich webpack build system that's already setup to provide hot reloading, CSS modules with Sass support, unit testing, code coverage reports, bundle splitting, and a whole lot more.
 
 The primary goal of this project is to remain as **unopinionated** as possible. Its purpose is not to dictate your project structure or to demonstrate a complete sample application, but to provide a set of tools intended to make front-end development robust, easy, and, most importantly, fun. Check out the full feature list below!
@@ -93,27 +97,18 @@ The application structure presented in this boilerplate is **fractal**, where fu
 ├── interfaces               # Type declarations for Flow
 ├── server                   # Koa application (uses webpack middleware)
 │   └── main.js              # Server application entry point
-├── src                      # Application source code
-│   ├── main.js              # Application bootstrap and rendering
-│   ├── components           # Reusable Presentational Components
-│   ├── containers           # Reusable Container Components
-│   ├── layouts              # Components that dictate major page structure
-│   ├── static               # Static assets (not imported anywhere in source code)
-│   ├── styles               # Application-wide styles (generally settings)
-│   ├── store                # Redux-specific pieces
-│   │   ├── createStore.js   # Create and instrument redux store
-│   │   └── reducers.js      # Reducer registry and injection
-│   └── routes               # Main route definitions and async split points
-│       ├── index.js         # Bootstrap main application routes with store
-│       ├── Root.js          # Wrapper component for context-aware providers
-│       └── Home             # Fractal route
-│           ├── index.js     # Route definitions and async split points
-│           ├── assets       # Assets required to render components
-│           ├── components   # Presentational React Components
-│           ├── container    # Connect components to actions and store
-│           ├── modules      # Collections of reducers/constants/actions
-│           └── routes **    # Fractal sub-routes (** optional)
-└── tests                    # Unit tests
+└── src                      # Application source code
+    ├── main.js              # Application bootstrap and rendering
+    ├── app                  # Reusable Presentational Components
+    │   ├── App.js           # Wrapper component for context-aware providers
+    │   ├── createStore.js   # Create and instrument redux store
+    │   └── reducers.js      # Reducer registry and injection
+    ├── layouts              # Components that dictate major page structure
+    ├── static               # Static assets (not imported anywhere in source code)
+    ├── styles               # Application-wide styles (generally settings)
+    └── modules              # Reusable Container Components
+        ├── home             # Home module
+        └── counter          # Counter module
 ```
 
 ## Development
