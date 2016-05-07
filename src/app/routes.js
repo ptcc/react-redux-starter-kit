@@ -1,6 +1,6 @@
 // We only need to import the modules necessary for initial render
 import CoreLayout from 'layouts/CoreLayout/CoreLayout'
-import Home from 'modules/home/routes'
+import Home from 'modules/home/homeRoutes'
 import CounterRoutes from 'modules/counter/counterRoutes'
 
 /*  Note: Instead of using JSX, we recommend using react-router

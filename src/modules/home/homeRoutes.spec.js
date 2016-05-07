@@ -1,4 +1,4 @@
-import HomeRoute from './'
+import HomeRoute from './homeRoutes'
 
 describe('(Route) Home', () => {
   let _component
