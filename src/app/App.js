@@ -1,37 +1,26 @@
-import React from 'react'
-import createBrowserHistory from 'history/lib/createBrowserHistory'
-import { Router, useRouterHistory } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
-import createStore from './createStore'
+import React, { PropTypes } from 'react'
+import { Router } from 'react-router'
 import { Provider } from 'react-redux'
 
-// ========================================================
-// Browser History Setup
-// ========================================================
-const browserHistory = useRouterHistory(createBrowserHistory)({
-  basename: __BASENAME__
-})
+export class App extends React.Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+    routes: PropTypes.object.isRequired,
+    routerKey: PropTypes.number,
+    store: PropTypes.object.isRequired
+  }
 
-// ========================================================
-// Store and History Instantiation
-// ========================================================
-// Create redux store and sync with react-router-redux. We have installed the
-// react-router-redux reducer under the key "router" in src/routes/index.js,
-// so we need to provide a custom `selectLocationState` to inform
-// react-router-redux of its location.
-const initialState = window.___INITIAL_STATE__
-const store = createStore(initialState, browserHistory)
-const history = syncHistoryWithStore(browserHistory, store, {
-  selectLocationState: (state) => state.router
-})
+  render() {
+    const { history, routes, routerKey, store } = this.props
 
-const routes = require('./routes').default(store)
-const App = (
-  <Provider store={store}>
-    <div style={{ height: '100%' }}>
-      <Router history={history} children={routes} />
-    </div>
-  </Provider>
-)
+    return (
+      <Provider store={store}>
+        <div style={{ height: '100%' }}>
+          <Router history={history} children={routes} key={routerKey} />
+        </div>
+      </Provider>
+    )
+  }
+}
 
 export default App
