@@ -14,7 +14,7 @@ export default {
       enabled: true,
       options: {
         host: 'https://api.github.com',
-        map: function(path) { return path.replace('/api', ''); },
+        map: (path) => path.replace('/api', ''),
         match: /^\/api\/.*/
       }
     }

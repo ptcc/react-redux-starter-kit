@@ -1,8 +1,8 @@
-import { PropTypes } from 'react';
+import { PropTypes } from 'react'
 
 const UserPropType = {
-    id: PropTypes.number.isRequired,
-    login: PropTypes.string.isRequired
-};
+  id: PropTypes.number.isRequired,
+  login: PropTypes.string.isRequired
+}
 
-export default UserPropType;
+export default UserPropType

@@ -1,43 +1,41 @@
-import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
+import React, { Component, PropTypes } from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import userActions from './userActions'
 import { UserPropType } from './userPropTypes'
 
-
-
 class User extends Component {
-    componentDidMount() {
-        this.props.loadUsers();
-    }
+  componentDidMount() {
+    this.props.loadUsers()
+  }
 
-    render() {
-        const { loading, users } = this.props;
+  render() {
+    const { loading, users } = this.props
 
-        return (
-            <div className="row">
-                {loading &&
-                    <div className="col-xs-12">
-                      Loading
-                    </div>
-                }
-                {!loading &&
-                    users.map(user => (
-                        <div key={user.id} className="col-xs-12 col-md-6 col-lg-3">
-                          {user.login}
-                        </div>
-                    ))
-                }
+    return (
+      <div className="row">
+        {loading &&
+          <div className="col-xs-12">
+            Loading
+          </div>
+        }
+        {!loading &&
+          users.map(user => (
+            <div key={user.id} className="col-xs-12 col-md-6 col-lg-3">
+              {user.login}
             </div>
-        );
-    }
+          ))
+        }
+      </div>
+    )
+  }
 }
 
 User.propTypes = {
-    users: PropTypes.arrayOf(PropTypes.shape(UserPropType)),
-    loading: PropTypes.bool.isRequired,
-    loadUsers: PropTypes.func.isRequired
-};
+  users: PropTypes.arrayOf(PropTypes.shape(UserPropType)),
+  loading: PropTypes.bool.isRequired,
+  loadUsers: PropTypes.func.isRequired
+}
 
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
@@ -48,17 +46,14 @@ User.propTypes = {
     Keys will be passed as props to presentational components. Here we are
     implementing our wrapper around increment; the component doesn't care   */
 
-
 const mapStateToProps = (state) => ({
   loading: state.user.loading,
-  users: state.user.list,
+  users: state.user.list
 })
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  loadUsers: userActions.list.request,
+  loadUsers: userActions.list.request
 }, dispatch)
-
-
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:
 

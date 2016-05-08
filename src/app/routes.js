@@ -13,7 +13,7 @@ export const createRoutes = (store) => ({
   indexRoute: Home,
   childRoutes: [
     CounterRoutes(store),
-    UserRoutes(store),
+    UserRoutes(store)
   ]
 })
 
