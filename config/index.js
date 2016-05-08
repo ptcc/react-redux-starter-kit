@@ -82,7 +82,8 @@ config.globals = {
   '__TEST__'     : config.env === 'test',
   '__DEBUG__'    : config.env === 'development' && !argv.no_debug,
   '__COVERAGE__' : !argv.watch && config.env === 'test',
-  '__BASENAME__' : JSON.stringify(process.env.BASENAME || '')
+  '__BASENAME__' : JSON.stringify(process.env.BASENAME || ''),
+  'API_URL'      : JSON.stringify('/api')
 }
 
 // ------------------------------------
