@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore } from 'redux'
+import { applyMiddleware, compose, createStore } from 'redux'
 import { routerMiddleware } from 'react-router-redux'
 import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
@@ -9,20 +9,21 @@ export default (initialState = {}, history) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
-  let middleware = applyMiddleware(
+  const middleware = [
     createSagaMiddleware(sagas),
     thunk,
     routerMiddleware(history)
-  )
+  ]
 
   // ======================================================
-  // Developer Tools
+  // Store Enhancers
   // ======================================================
+  const enhancers = []
   if (__DEBUG__) {
     const devToolsExtension = window.devToolsExtension
 
     if (typeof devToolsExtension === 'function') {
-      middleware.push(middleware, devToolsExtension())
+      enhancers.push(devToolsExtension())
     }
   }
 
@@ -32,7 +33,10 @@ export default (initialState = {}, history) => {
   const store = createStore(
     makeRootReducer(),
     initialState,
-    middleware
+    compose(
+      applyMiddleware(...middleware),
+      ...enhancers
+    )
   )
   store.asyncReducers = {}
 
