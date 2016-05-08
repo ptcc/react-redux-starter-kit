@@ -8,6 +8,8 @@
 
 This repository is based on https://github.com/davezuko/react-redux-starter-kit. The difference is its structure is modular which is inspired by the post http://marmelab.com/blog/2015/12/17/react-directory-structure.html of François Zaninotto.
 
+Also, there is a example for calling github API to fetching user by using redux-saga which is also inspired by https://github.com/marmelab/javascript-boilerplate.
+
 ===
 
 This starter kit is designed to get you up and running with a bunch of awesome new front-end technologies, all on top of a configurable, feature-rich webpack build system that's already setup to provide hot reloading, CSS modules with Sass support, unit testing, code coverage reports, bundle splitting, and a whole lot more.
@@ -108,6 +110,7 @@ The application structure presented in this boilerplate is **fractal**, where fu
     ├── styles               # Application-wide styles (generally settings)
     └── modules              # Reusable Container Components
         ├── home             # Home module
+        ├── user             # User module
         └── counter          # Counter module
 ```
 
@@ -184,6 +187,7 @@ These are global variables available to you anywhere in your source code. If you
 |`__TEST__`|True when `process.env.NODE_ENV` is `test`|
 |`__DEBUG__`|True when `process.env.NODE_ENV` is `development` and cli arg `--no_debug` is not set (`npm run dev:no-debug`)|
 |`__BASENAME__`|[npm history basename option](https://github.com/rackt/history/blob/master/docs/BasenameSupport.md)|
+|`API_URL`|api url|
 
 
 ### Styles
