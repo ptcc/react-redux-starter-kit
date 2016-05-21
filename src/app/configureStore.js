@@ -9,8 +9,9 @@ export default (initialState = {}, history) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
+  const sagaMiddleware = createSagaMiddleware()
   const middleware = [
-    createSagaMiddleware(sagas),
+    sagaMiddleware,
     thunk,
     routerMiddleware(history)
   ]
@@ -38,6 +39,7 @@ export default (initialState = {}, history) => {
       ...enhancers
     )
   )
+  sagaMiddleware.run(sagas)
   store.asyncReducers = {}
 
   if (module.hot) {
