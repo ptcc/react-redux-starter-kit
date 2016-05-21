@@ -9,6 +9,7 @@ import _debug from 'debug'
 import config from '../config'
 import webpackDevMiddleware from './middleware/webpack-dev'
 import webpackHMRMiddleware from './middleware/webpack-hmr'
+import open from 'open'
 
 const debug = _debug('app:server')
 const paths = config.utils_paths
@@ -43,6 +44,8 @@ if (config.env === 'development') {
   // of development since this directory will be copied into ~/dist
   // when the application is compiled.
   app.use(convert(serve(paths.client('static'))))
+
+  open(`http://${config.server_host}:${config.server_port}`)
 } else {
   debug(
     'Server is being run outside of live development mode, meaning it will ' +
