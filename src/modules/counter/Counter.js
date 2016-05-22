@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import classes from './Counter.scss'
 import { connect } from 'react-redux'
-import { increment, doubleAsync } from './counterReducer'
+import { increment, doubleAsync } from './counterActions'
 
-class Counter extends Component {
+export class Counter extends Component {
   static propTypes = {
     counter: PropTypes.number.isRequired,
     doubleAsync: PropTypes.func.isRequired,

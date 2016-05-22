@@ -1,9 +1,10 @@
+import counterReducer from './counterReducer'
+
 import {
   COUNTER_INCREMENT,
   increment,
-  doubleAsync,
-  default as counterReducer
-} from './counterReducer'
+  doubleAsync
+} from './counterActions'
 
 describe('(Redux Module) Counter', () => {
   it('Should export a constant COUNTER_INCREMENT.', () => {

@@ -4,7 +4,8 @@ describe('(Route) Home', () => {
   let _component
 
   beforeEach(() => {
-    _component = HomeRoute.component()
+    _component = new HomeRoute.component().render()
+    console.log(_component);
   })
 
   it('Should return a route configuration object', () => {
