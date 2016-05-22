@@ -1,31 +1,37 @@
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
 import classes from './Counter.scss'
 import { connect } from 'react-redux'
 import { increment, doubleAsync } from './counterReducer'
 
-export const Counter = (props) => (
-  <div>
-    <h2 className={classes.counterContainer}>
-      Counter:
-      {' '}
-      <span className={classes['counter--green']}>
-        {props.counter}
-      </span>
-    </h2>
-    <button className="btn btn-default" onClick={props.increment}>
-      Increment
-    </button>
-    {' '}
-    <button className="btn btn-default" onClick={props.doubleAsync}>
-      Double (Async)
-    </button>
-  </div>
-)
+class Counter extends Component {
+  static propTypes = {
+    counter: PropTypes.number.isRequired,
+    doubleAsync: PropTypes.func.isRequired,
+    increment: PropTypes.func.isRequired
+  }
 
-Counter.propTypes = {
-  counter: React.PropTypes.number.isRequired,
-  doubleAsync: React.PropTypes.func.isRequired,
-  increment: React.PropTypes.func.isRequired
+  render() {
+    const { counter, doubleAsync, increment } = this.props
+
+    return (
+      <div>
+        <h2 className={classes.counterContainer}>
+          Counter:
+          {' '}
+          <span className={classes['counter--green']}>
+            {counter}
+          </span>
+        </h2>
+        <button className="btn btn-default" onClick={increment}>
+          Increment
+        </button>
+        {' '}
+        <button className="btn btn-default" onClick={doubleAsync}>
+          Double (Async)
+        </button>
+      </div>
+    )
+  }
 }
 
 /*  This is a container component. Notice it does not contain any JSX,
