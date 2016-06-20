@@ -59,7 +59,7 @@ Finally, This project wouldn't be possible without the help of our many contribu
 After confirming that your development environment meets the specified [requirements](#requirements), you can follow these steps to get the project up and running:
 
 ```bash
-$ git clone https://github.com/davezuko/react-redux-starter-kit.git
+$ git clone https://github.com/koshuang/react-redux-starter-kit.git
 $ cd react-redux-starter-kit
 $ npm install                   # Install project dependencies
 $ npm start                     # Compile and launch
