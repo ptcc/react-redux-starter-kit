@@ -1,20 +1,23 @@
 // We only need to import the modules necessary for initial render
 import CoreLayout from 'layouts/CoreLayout/CoreLayout'
 import HomeRoutes from 'modules/home/homeRoutes'
-import CounterRoutes from 'modules/counter/counterRoutes'
-import UserRoutes from 'modules/user/userRoutes'
 
+let moduleRoutes=require.context("../modules/", true, /^.*\/[^\/]*\/[^\/]*Routes.js$/i);
+
+//let options={counter:true,user:true}
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
 
 export const createRoutes = (store) => ({
   path: '/',
   component: CoreLayout,
-  indexRoute: HomeRoutes,
-  childRoutes: [
-    CounterRoutes(store),
-    UserRoutes(store)
-  ]
+  indexRoute: HomeRoutes(store),
+  getChildRoutes (location, cb) {
+      require.ensure([], (require) => {
+        let options = store.getState().modules
+        cb(null, Object.keys(options).filter(mod=>options[mod]).map(mod=>moduleRoutes(`./${mod}/${mod}Routes.js`).default(store)))
+      })
+    }
 })
 
 /*  Note: childRoutes can be chunked or otherwise loaded programmatically
